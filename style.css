@@ -303,6 +303,8 @@ body.loaded {
 .hero-buttons {
     display: flex;
     gap: 1rem;
+    position: relative;
+    z-index: 10;
 }
 
 .btn {
@@ -314,6 +316,8 @@ body.loaded {
     border: none;
     cursor: pointer;
     display: inline-block;
+    position: relative;
+    z-index: 10;
 }
 
 .btn-primary {
@@ -1621,14 +1625,16 @@ body.loaded {
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
+        background: rgba(26, 32, 44, 0.98);
+        backdrop-filter: blur(20px);
         width: 100%;
         text-align: center;
         transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.3);
         padding: 2rem 0;
         z-index: 1000;
+        border-radius: 0;
+        border: none;
     }
     
     .nav-menu.active {
@@ -1641,23 +1647,49 @@ body.loaded {
     
     .nav-link {
         font-size: 1.1rem;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
+        padding: 0.8rem 2rem;
+        border-radius: 25px;
         transition: all 0.3s ease;
+        display: block;
+        width: 80%;
+        margin: 0 auto;
     }
     
-    .nav-link:hover {
-        background: var(--bg-secondary);
-        color: var(--primary-color);
+    .cv-btn {
+        position: fixed;
+        bottom: 15px;
+        right: 15px;
+        z-index: 1001;
+        padding: 0.6rem 0.8rem;
+        border-radius: 30px;
+        box-shadow: var(--shadow-heavy);
+        font-size: 0.7rem;
+        min-width: auto;
+        width: auto;
+    }
+    
+    .cv-btn span {
+        display: none;
     }
     
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
+        gap: 2rem;
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    
+    .typing-text {
+        font-size: 1.2rem;
     }
     
     .floating-elements {
@@ -1665,8 +1697,9 @@ body.loaded {
     }
     
     .flip-card {
-        max-width: 300px;
-        height: 300px;
+        max-width: 280px;
+        height: 280px;
+        margin: 0 auto;
     }
     
     .hero-buttons {
@@ -1678,51 +1711,59 @@ body.loaded {
     .btn {
         width: 200px;
         text-align: center;
+        padding: 1rem 1.5rem;
     }
     
-    .about-timeline::before {
-        left: 30px;
+    /* About Section Mobile */
+    .summary-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 1.5rem;
     }
     
-    .timeline-item {
-        flex-direction: row !important;
-        padding-left: 80px;
+    .summary-text h3 {
+        font-size: 1.3rem;
+        line-height: 1.4;
     }
     
-    .timeline-item:nth-child(even) {
-        flex-direction: row !important;
+    .summary-text p {
+        font-size: 1rem;
     }
     
-    .timeline-icon {
-        position: absolute;
-        left: 0;
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-    }
-    
-    .timeline-content {
-        margin-left: 1rem;
-        margin-right: 0;
-    }
-    
-    .timeline-content::before {
-        left: -15px !important;
-        right: auto !important;
-        border-right-color: var(--bg-primary) !important;
-        border-left-color: transparent !important;
-    }
-    
-    .stats-grid-horizontal {
+    .expertise-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
     
-    .education-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    .expertise-card {
+        padding: 1.5rem;
     }
     
+    .delivery-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .delivery-item {
+        padding: 1.5rem;
+    }
+    
+    .focus-content {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .focus-card {
+        flex-direction: row;
+        text-align: left;
+        padding: 1.5rem;
+    }
+    
+    .subsection-title {
+        font-size: 1.5rem;
+    }
+    
+    /* Experience Section Mobile */
     .experience-timeline::before {
         left: 20px;
     }
@@ -1731,72 +1772,195 @@ body.loaded {
         flex-direction: column;
         align-items: flex-start;
         padding-left: 50px;
+        margin-bottom: 2rem;
+    }
+    
+    .exp-date {
+        position: absolute;
+        left: 0;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.7rem;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
     }
     
     .exp-content {
         margin-left: 0;
-        margin-top: 1rem;
+        margin-top: 0;
+        width: 100%;
     }
     
+    /* Education Section Mobile */
+    .education-content {
+        justify-content: center;
+    }
+    
+    .edu-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+    
+    .edu-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Skills Section Mobile */
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .skill-category {
+        padding: 1.5rem;
+    }
+    
+    .skill-category h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .skill-tags {
+        gap: 0.4rem;
+    }
+    
+    .skill-tag {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    /* Projects Section Mobile */
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .project-card {
+        margin: 0 auto;
+        max-width: 350px;
+    }
+    
+    .project-content {
+        padding: 1.5rem;
+    }
+    
+    .project-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Blog Section Mobile */
+    .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .blog-card {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+    
+    .blog-content {
+        padding: 1.5rem;
+    }
+    
+    /* Contact Section Mobile */
     .contact-content {
         grid-template-columns: 1fr;
+        gap: 2rem;
     }
     
+    .contact-item {
+        padding: 1.2rem;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-item i {
+        margin-bottom: 0.5rem;
+    }
+    
+    .contact-form {
+        padding: 1.5rem;
+    }
+    
+    /* Footer Mobile */
     .footer-content {
         flex-direction: column;
         gap: 1rem;
+        text-align: center;
     }
     
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .about-text {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero-description {
-        font-size: 1.1rem;
-    }
-    
+    /* General Mobile Adjustments */
     .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .container {
         padding: 0 15px;
     }
+    
+    section {
+        padding: 60px 0;
+    }
 }
 
+/* Small Mobile Devices */
 @media (max-width: 480px) {
     .hero-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .typing-text {
-        font-size: 1.2rem;
-    }
-    
-    .hero-description {
         font-size: 1rem;
     }
     
-    .floating-card {
-        padding: 1.5rem;
+    .hero-description {
+        font-size: 0.9rem;
     }
     
-    .about-card,
-    .skill-category,
-    .contact-item {
-        padding: 1.5rem;
+    .flip-card {
+        max-width: 250px;
+        height: 250px;
     }
     
-    .project-content {
-        padding: 1.5rem;
+    .summary-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .summary-text h3 {
+        font-size: 1.1rem;
+    }
+    
+    .expertise-card,
+    .delivery-item,
+    .focus-card {
+        padding: 1.2rem;
+    }
+    
+    .subsection-title {
+        font-size: 1.3rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .cv-btn {
+        padding: 0.5rem 0.6rem;
+        font-size: 0.6rem;
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
     }
 }
 /* Professional Summary */

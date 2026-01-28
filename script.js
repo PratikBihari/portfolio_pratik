@@ -171,33 +171,16 @@ document.querySelectorAll('.nav-link').forEach(link => {
 // Form submission
 const contactForm = document.querySelector('.contact-form form');
 contactForm?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(contactForm);
-    const name = formData.get('name') || contactForm.querySelector('input[type="text"]').value;
-    const email = formData.get('email') || contactForm.querySelector('input[type="email"]').value;
-    const subject = formData.get('subject') || contactForm.querySelectorAll('input[type="text"]')[1].value;
-    const message = formData.get('message') || contactForm.querySelector('textarea').value;
-    
-    // Simple validation
-    if (!name || !email || !subject || !message) {
-        alert('Please fill in all fields');
-        return;
-    }
-    
-    // Simulate form submission
     const submitBtn = contactForm.querySelector('button[type="submit"]');
     const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
     
+    // Re-enable button after form submission
     setTimeout(() => {
-        alert('Thank you for your message! I\'ll get back to you soon.');
-        contactForm.reset();
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-    }, 2000);
+    }, 3000);
 });
 
 // Add particle effect to hero section
